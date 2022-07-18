@@ -51,6 +51,68 @@
     <title>Rastreador de endereço IP | Leonardo Henrique</title>
 </head>
 <body>
-    
+
+    <main class="intro">
+        <h1 class="title">
+            Rastreador de endereço IP
+        </h1>
+
+        <form class="form">
+            <label for="search">
+                Endereço IP ou domínio
+            </label>
+            <input type="text"
+            id="search"
+            name="search"
+            placeholder="Procure qualquer endereço IP ou domínio"
+            autocomplete="off" 
+            autofocus />
+
+            <button type="button">
+                <svg xmlns="http://www.w3.org/2000/svg" width="11" height="14">
+                    <path fill="none" stroke="#FFF" stroke-width="3" d="m2 1 6 6-6 6"/>
+                </svg>
+            </button>
+        </form>
+
+        <section class="result">
+           <ul>
+                <li class="result-item">
+                    <h2>Endereço de IP</h2>
+
+                    <p>
+                        192.212.174.101
+                    </p>
+                </li>
+
+                <li class="result-item">
+                    <h2>Localização</h2>
+
+                    <p>
+                        Brooklyn, NY 10001
+                    </p>
+                </li>
+
+                <li class="result-item">
+                    <h2>Fuso horário</h2>
+
+                    <p>
+                        UTC-05:00
+                    </p>
+                </li>
+
+                <li class="result-item">
+                    <h2>Provedor</h2>
+
+                    <p>
+                        SpaceX Starlink
+                    </p>
+                </li>
+           </ul> 
+        </section>
+    </main>
+
+    <div class="map"></div>
+
 </body>
 </html>
