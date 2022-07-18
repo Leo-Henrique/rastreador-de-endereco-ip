@@ -1,0 +1,140 @@
+body, input {
+    font-weight: 400;
+    font-size: $body;
+    line-height: 1.4;
+    font-family: "Rubik", sans-serif;
+}
+
+.intro {
+    background: url("../images/pattern-bg.png") 0 / cover no-repeat;
+}
+
+.intro-form {
+    @include container;
+    padding-top: 6rem;
+    padding-bottom: 6rem;
+
+    .title {
+        @include font-size($h1);
+        line-height: 0.95;
+        font-weight: 500;
+        text-align: center;
+        color: $support-light-1;
+        margin-bottom: 3rem;
+    }
+    .form {
+        display: flex;
+        justify-content: center;
+
+        label {
+            flex: 0 500px;
+        }
+        label input {
+            width: 100%;
+            padding: $padding-input;
+            border-radius: $borderRadius-global 0 0 $borderRadius-global;
+            border: none;
+            color: $support-dark-1;
+            background-color: $support-light-1;
+            outline: none;
+
+            &::placeholder {
+                color: $support-light-2;
+            }
+        }
+        button {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: $padding-input;
+            border-radius: 0 $borderRadius-global $borderRadius-global 0;
+            background-color: $support-dark-1;
+            transition: background-color 200ms ease-in-out;
+            cursor: pointer;
+
+            @include desktop-supported {
+                &:hover {
+                    background-color: $support-dark-2;
+                }
+            }
+            &:active {
+                background-color: $support-dark-2;
+            }
+        }
+    }
+}
+
+.intro-result {
+    @include container;
+
+    ul {
+        display: flex;
+        justify-content: space-between;
+        column-gap: $padding-result;
+        padding: $padding-result;
+        border-radius: $borderRadius-global;
+        background-color: $support-light-1;
+        
+    }
+    .result-item + .result-item {
+        border-left: 1px solid $support-light-2 + 65%;
+        padding-left: $padding-result;
+    }
+    .result-item h2 {
+        font-size: $small;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 1.2px;
+        white-space: nowrap;
+        color: $support-light-2;
+        margin-bottom: 1rem;
+    }
+    .result-item p {
+        @include font-size($h2);
+        line-height: 1.2;
+        font-weight: 500;
+    }
+}
+
+// .map {
+//     width: 100%;
+//     height: 550px;
+//     background: url("../images/map.jpg") 0 / cover no-repeat;
+// }
+
+
+@include breakpoint-lg {
+    .intro-result ul {
+        justify-content: initial;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 3rem;
+        padding: 3rem;
+        text-align: center;   
+    }
+    .intro-result .result-item + .result-item {
+        border-left: none;
+        padding-left: 0;
+    }
+}
+
+@include breakpoint-sm {
+    body, input {
+        font-size: $body-sm;
+    }
+    .intro-form {
+        padding-top: 4rem;
+        padding-bottom: 3rem;
+    }
+    .intro-result ul {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 2.5rem;
+        padding: 2.5rem;
+    }
+    .intro-result .result-item h2 {
+        font-size: $small - 0.2rem;
+        margin-bottom: 0.6rem;
+    }
+}
