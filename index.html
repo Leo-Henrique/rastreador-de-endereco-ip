@@ -10,6 +10,15 @@
     <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;700&display=swap" rel="stylesheet">
     <!-- FIM -->
 
+    <!-- LEAFLET -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.8.0/dist/leaflet.css"
+    integrity="sha512-hoalWLoI8r4UszCkZ5kL8vayOGVae1oxXe/2A4AO6J9+580uKHDO3JdHb7NzwwzK5xr/Fs0W40kiNHxM9vyTtQ=="
+    crossorigin=""/>
+    <script src="https://unpkg.com/leaflet@1.8.0/dist/leaflet.js"
+    integrity="sha512-BB3hKbKWOc9Ez/TAwyWxNXeoV9c1v6FIeYiBieIWkpLjauysF18NzgR1MBNBXf8/KABdlkX68nAhlwcDFLGPCQ=="
+    crossorigin=""></script>
+    <!-- FIM -->
+
     <!-- CSS -->
     <link rel="stylesheet" type="text/css" href="css/style.css" />
     <!-- FIM -->
@@ -58,17 +67,27 @@
                 Rastreador de endereço IP
             </h1>
 
+            <div class="user-ip-container">
+                <button type="button"
+                id="userIp">
+                    Usar meu endereço IP
+                </button>
+            </div>
+
             <form class="form">
                 <label for="search">
                     <input type="text"
                     id="search"
                     name="search"
-                    placeholder="Procure qualquer endereço IP ou domínio"
+                    placeholder="Procure qualquer endereço IP"
                     autocomplete="off" 
                     autofocus />
                 </label>
+
+                <span id="error"></span>
     
-                <button type="button">
+                <button type="button"
+                id="btn">
                     <svg xmlns="http://www.w3.org/2000/svg" width="11" height="14">
                         <path fill="none" stroke="#FFF" stroke-width="3" d="m2 1 6 6-6 6"/>
                     </svg>
@@ -76,44 +95,66 @@
             </form>
         </section>
 
-        <section class="intro-result">
+        <section class="intro-result"
+        id="introResult">
            <ul>
                 <li class="result-item">
                     <h2>Endereço de IP</h2>
 
-                    <p>
-                        192.212.174.101
-                    </p>
+                    <p id="ip"
+                    class="show"></p>
                 </li>
 
                 <li class="result-item">
                     <h2>Localização</h2>
 
-                    <p>
-                        Brooklyn, NY 10001
-                    </p>
+                    <p id="location"
+                    class="show"></p>
                 </li>
 
                 <li class="result-item">
                     <h2>Fuso horário</h2>
 
-                    <p>
-                        UTC-05:00
-                    </p>
+                    <p id="timezone"
+                    class="show"></p>
                 </li>
 
                 <li class="result-item">
                     <h2>Provedor</h2>
 
-                    <p>
-                        SpaceX Starlink
-                    </p>
+                    <p id="isp"
+                    class="show"></p>
                 </li>
            </ul> 
         </section>
     </main>
 
-    <div class="map"></div>
+    <div id="map"></div>
 
+    <footer class="footer">
+        <div class="footer-container">
+                <p>
+                    <span>
+                        Desafio do 
+                    </span>
+                    <a href="https://www.frontendmentor.io/home" 
+                    target="_blank" 
+                    rel="external noopener noreferrer">
+                        Frontend Mentor.
+                    </a>
+                </p>
+    
+                <p>
+                    <span>Desenvolvido por </span>
+                    <a href="https://www.linkedin.com/in/leonardo-henrique-/" 
+                    target="_blank" 
+                    rel="external noopener noreferrer">
+                        Leonardo Henrique.
+                    </a>
+                </p>
+        </div>
+    </footer>
+
+    <!-- <script type="module" src="js/script.js"></script> -->
 </body>
 </html>

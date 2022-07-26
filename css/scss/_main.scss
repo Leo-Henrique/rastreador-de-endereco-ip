@@ -4,30 +4,37 @@ body, input {
     line-height: 1.4;
     font-family: "Rubik", sans-serif;
 }
+body {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+}
 
 .intro {
     background: url("../images/pattern-bg.png") 0 / cover no-repeat;
 }
-
 .intro-form {
     @include container;
-    padding-top: 6rem;
-    padding-bottom: 6rem;
+    padding-top: 5rem;
 
     .title {
         @include font-size($h1);
-        line-height: 0.95;
+        line-height: 1.2;
         font-weight: 500;
         text-align: center;
         color: $support-light-1;
-        margin-bottom: 3rem;
+        margin-bottom: 2rem;
     }
     .form {
         display: flex;
         justify-content: center;
+        position: relative;
 
         label {
             flex: 0 500px;
+            display: flex;
+            justify-content: center;
         }
         label input {
             width: 100%;
@@ -37,12 +44,59 @@ body, input {
             color: $support-dark-1;
             background-color: $support-light-1;
             outline: none;
+            position: relative;
+            z-index: $zIndex-input;
+            transition: box-shadow 300ms ease-in-out;
 
+            &:placeholder-shown {
+                text-overflow: ellipsis;
+            }
             &::placeholder {
                 color: $support-light-2;
             }
         }
-        button {
+        label input.error {
+            box-shadow: inset 0 0 0 3px #dc3545;
+        }
+        #error {
+            display: none;
+            justify-content: center;
+            max-width: 320px;
+            position: absolute;
+            top: calc(100% + 12px);
+            z-index: $zIndex-error;
+            margin-left: -61px;
+            padding: 1.8rem 3rem;
+            font-size: 1.6rem;
+            border-top: 8px solid #DC3545;
+            border-radius: 12px;
+            background-color: $support-light-1;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
+            color: #68707d;
+            text-align: center;
+            opacity: 0;
+            transform: translate3D(0, -15px, 0);
+            transition-property: transform, opacity;
+            transition-duration: 300ms;
+            transition-timing-function: ease-in-out;
+
+            &::before {
+                content: "";
+                position: absolute;
+                bottom: 100%;
+                border-width: 15px;
+                border-style: solid;
+                border-color: transparent transparent #DC3545 transparent;
+            }
+        }
+        #error.display {
+            display: flex;
+        }
+        #error.show {
+            transform: none;
+            opacity: 1;
+        }
+        #btn {
             display: flex;
             align-items: center;
             justify-content: center;
@@ -62,11 +116,49 @@ body, input {
             }
         }
     }
+    .user-ip-container {
+        display: flex;
+        justify-content: flex-end;
+        max-width: 561px;
+        @include m-h-auto;
+
+        #userIp {
+            display: block;
+            padding: 1.2rem 0 0.8rem 2rem;
+            font-size: 1.5rem;
+            color: $support-light-1;
+            font-weight: 500;
+            cursor: pointer;
+            transition-property: color, opacity;
+            transition-duration: 200ms;
+            transition-timing-function: ease-in-out;
+
+            @include desktop-supported {
+                &:hover {
+                    color: $support-light-1 - 40%;
+                }
+            }
+            &:active {
+                color: $support-light-1 - 40%;
+            }
+        }
+        #userIp[disabled] {
+            cursor: default;
+            opacity: 0.4;
+
+            @include desktop-supported {
+                &:hover {
+                    color: $support-light-1;
+                }
+            }
+        }
+    }
 }
 
 .intro-result {
     @include container;
-
+    position: relative;
+    z-index: $zIndex-result;
     ul {
         display: flex;
         justify-content: space-between;
@@ -74,7 +166,10 @@ body, input {
         padding: $padding-result;
         border-radius: $borderRadius-global;
         background-color: $support-light-1;
-        
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+    }
+    .result-item {
+        max-width: 350px;
     }
     .result-item + .result-item {
         border-left: 1px solid $support-light-2 + 65%;
@@ -93,14 +188,66 @@ body, input {
         @include font-size($h2);
         line-height: 1.2;
         font-weight: 500;
+        opacity: 0;
+        transform: translate3D(0, -15px, 0);
+        transition-property: opacity, transform;
+        transition-duration: 300ms;
+        transition-timing-function: ease-in-out;
+
+        &.show {
+            opacity: 1;
+            transform: none;
+        }
+    }
+    .result-item p#timezone {
+        white-space: nowrap;
     }
 }
 
-// .map {
-//     width: 100%;
-//     height: 550px;
-//     background: url("../images/map.jpg") 0 / cover no-repeat;
-// }
+#map {
+    width: 100%;
+    flex: 1 0 580px;
+    z-index: $zIndex-map;
+}
+
+.footer {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: $zIndex-footer;
+    font-size: 1.3rem;
+    color: $support-dark-1;
+    text-align: center;
+    padding: 0 1.5rem;
+
+    .footer-container {
+        display: inline-block;
+        padding: 0 2rem;
+        @include m-h-auto;
+        background-color: $support-light-1;
+        border-radius: 10px 10px 0 0;
+        box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.3);
+    }
+    p {
+        display: inline-block;
+    }
+    a {
+        display: inline-block;
+        padding: 1.2rem 0;
+        color: $support-dark-2;
+        transition: color 200ms ease-in-out;
+
+        @include desktop-supported {
+            &:hover {
+                color: $support-dark-2 + 50%;
+            }
+        }
+        &:active {
+            color: $support-dark-2 + 50%;
+        }
+    }
+}
 
 
 @include breakpoint-lg {
@@ -116,6 +263,9 @@ body, input {
         border-left: none;
         padding-left: 0;
     }
+    .intro-result .result-item p {
+        transform: translate3D(0, -10px, 0);
+    }
 }
 
 @include breakpoint-sm {
@@ -124,7 +274,16 @@ body, input {
     }
     .intro-form {
         padding-top: 4rem;
-        padding-bottom: 3rem;
+    }
+
+    .intro-form .form label input,
+    .intro-form .form #btn  {
+        padding: 2rem;
+    }
+    .intro-form .form #error {
+        margin-left: initial;
+        padding: 1.6rem 2rem;
+        font-size: 1.4rem;
     }
     .intro-result ul {
         display: flex;
@@ -137,4 +296,18 @@ body, input {
         font-size: $small - 0.2rem;
         margin-bottom: 0.6rem;
     }
+    .intro-result .result-item p {
+        max-width: initial;
+    }
+    .footer .footer-container {
+        padding: 0.8rem 2rem;
+    }
+    .footer p {
+        line-height: 1;
+    }
+    .footer a {
+        display: inline-block;
+        padding: 0.6rem 0;
+    }
+    
 }
