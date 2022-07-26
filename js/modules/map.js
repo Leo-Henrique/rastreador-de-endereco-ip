@@ -3,7 +3,7 @@ export default function map() {
     const icon = L.icon({iconUrl: './images/icon-location.svg',});
 
     L.tileLayer("https://tile.osm.ch/switzerland/{z}/{x}/{y}.png", {
-        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="external noopener norefferer">OpenStreetMap</a> contributors'
+        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="external noopener noreferrer">OpenStreetMap</a> contributors'
     }).addTo(map);
 
     function setLocation(location) {

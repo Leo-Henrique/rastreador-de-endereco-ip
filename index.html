@@ -87,7 +87,8 @@
                 <span id="error"></span>
     
                 <button type="button"
-                id="btn">
+                id="btn"
+                aria-label="Buscar pelo endereço IP">
                     <svg xmlns="http://www.w3.org/2000/svg" width="11" height="14">
                         <path fill="none" stroke="#FFF" stroke-width="3" d="m2 1 6 6-6 6"/>
                     </svg>
@@ -129,7 +130,9 @@
         </section>
     </main>
 
-    <div id="map"></div>
+    <div id="map"
+    role="application"
+    aria-label="Mapa com a localização atual do endereço IP solicitado"></div>
 
     <footer class="footer">
         <div class="footer-container">
