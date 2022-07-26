@@ -1,6 +1,6 @@
 export default function map() {
     const map = L.map(document.getElementById("map"), {zoomControl: false});
-    const icon = L.icon({iconUrl: '../images/icon-location.svg',});
+    const icon = L.icon({iconUrl: './images/icon-location.svg',});
 
     L.tileLayer("https://tile.osm.ch/switzerland/{z}/{x}/{y}.png", {
         attribution: '&copy; <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="external noopener norefferer">OpenStreetMap</a> contributors'
